@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium EMP Dashboard</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #0a0e17; /* Deep Midnight Blue */
+            font-family: 'Outfit', sans-serif;
+            color: #ffffff;
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        /* Top Header & Add Button */
+        .dashboard-header {
+            padding: 40px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .brand-title h1 {
+            font-weight: 700;
+            margin: 0;
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-add-data {
+            background: linear-gradient(45deg, #ffd700, #b8860b);
+            color: #000 !important;
+            font-weight: 700;
+            padding: 12px 25px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-add-data:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Unique Grid Card */
+        .emp-card {
+            background: #161c2a;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 25px;
+            height: 100%;
+            transition: 0.4s ease;
+            position: relative;
+        }
+
+        .emp-card:hover {
+            border-color: #ffd700;
+            transform: translateY(-5px);
+        }
+
+        /* Gold Avatar */
+        .avatar {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #ffd700;
+            color: #ffd700;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .emp-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: block;
+        }
+
+        .emp-role {
+            color: #ffd700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .data-item {
+            font-size: 0.85rem;
+        }
+
+        .label { color: #6e7681; display: block; margin-bottom: 2px; }
+        .val { color: #e6edf3; font-weight: 500; }
+
+        /* Action Buttons */
+        .card-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 8px;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .edit-link { background: #238636; color: white !important; }
+        .delete-link { background: rgba(248, 81, 73, 0.1); color: #f85149 !important; border: 1px solid #f85149; }
+
+        .edit-link:hover { background: #2ea043; }
+        .delete-link:hover { background: #f85149; color: white !important; }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header class="dashboard-header">
+            <div class="brand-title">
+                <h1>EMP Dashboard</h1>
+                <p class="text-muted m-0">Managing your elite workforce</p>
+            </div>
+            <a href="/employee/" class="btn-add-data">+ Add New Employee</a>
+        </header>
+
+        <div class="row g-4">
+            <% allEmp.map((emp, index)=> {%>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="emp-card">
+                        <div class="avatar">
+                            <%= emp['emp_name'].charAt(0).toUpperCase() %>
+                        </div>
+                        
+                        <span class="emp-name"><%= emp['emp_name'] %></span>
+                        <span class="emp-role"><%= emp['emp_role'] %></span>
+
+                        <div class="data-grid">
+                            <div class="data-item">
+                                <span class="label">Email</span>
+                                <span class="val text-truncate d-block"><%= emp['emp_email'] %></span>
+                            </div>
+                            <div class="data-item">
+                                <span class="label">Salary</span>
+                                <span class="val text-warning">₹<%= emp['emp_salary'] %></span>
+                            </div>
+                            <div class="data-item">
+                                <span class="label">Gender</span>
+                                <span class="val"><%= emp['emp_gender'] %></span>
+                            </div>
+                            <div class="data-item">
+                                <span class="label">Hobby</span>
+                                <span class="val"><%= emp['emp_hobby'] %></span>
+                            </div>
+                        </div>
+
+                        <div class="card-actions">
+                            <a href="/employee/editEmp/<%= emp['id']%>" class="action-btn edit-link">Edit</a>
+                            <a href="/employee/deleteEmp/?empId=<%= emp['id']%>" class="action-btn delete-link">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

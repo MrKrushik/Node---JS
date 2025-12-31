@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration | Premium</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-gold: #ffd700;
+            --dark-gold: #b8860b;
+            --bg-dark: #0a0e17;
+            --card-bg: #161c2a;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            font-family: 'Outfit', sans-serif;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center; /* Vertically center */
+            justify-content: center; /* Horizontally center */
+            margin: 0;
+            padding: 20px;
+        }
+
+        .form-container {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 30px;
+            padding: 50px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary-gold), #fff, var(--primary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 40px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .form-label {
+            color: var(--primary-gold);
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-left: 5px;
+        }
+
+        /* Inputs & Select Styling */
+        .form-control, .form-select {
+            background-color: rgba(0, 0, 0, 0.3) !important;
+            border: 1px solid rgba(255, 215, 0, 0.2) !important;
+            color: #fff !important;
+            border-radius: 15px;
+            padding: 14px 18px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-gold) !important;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2) !important;
+            background-color: rgba(0, 0, 0, 0.5) !important;
+        }
+
+        /* Fixing the Blue Dropdown issue */
+        .form-select option {
+            background-color: var(--card-bg);
+            color: #fff;
+        }
+
+        /* Premium Gold Button */
+        .btn-submit {
+            background: linear-gradient(45deg, var(--dark-gold), var(--primary-gold));
+            color: #000 !important;
+            font-weight: 700;
+            width: 100%;
+            padding: 16px;
+            border-radius: 15px;
+            border: none;
+            margin-top: 30px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 10px 20px rgba(184, 134, 11, 0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.4);
+            filter: brightness(1.1);
+        }
+
+        /* Radio & Checkbox Custom Look */
+        .option-group {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px dashed rgba(255, 215, 0, 0.2);
+        }
+
+        .form-check-input {
+            border-color: var(--primary-gold);
+            cursor: pointer;
+        }
+
+        .form-check-input:checked {
+            background-color: var(--primary-gold);
+            border-color: var(--primary-gold);
+        }
+
+        .view-link {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .view-link:hover {
+            color: var(--primary-gold);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-container">
+        <h1>Add Employee</h1>
+        
+        <form method="post" action="/employee/addEmp">
+            <div class="mb-4">
+                <label class="form-label">Full Name</label>
+                <input type="text" name="emp_name" class="form-control" placeholder="Enter full name...">
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" name="emp_email" class="form-control" placeholder="email@example.com">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label class="form-label">Password</label>
+                    <input type="password" name="emp_password" class="form-control" placeholder="••••••••">
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Gender</label>
+                <div class="option-group">
+                    <div class="form-check form-check-inline">
+                        <input type="radio" name="emp_gender" value="Male" id="male" class="form-check-input">
+                        <label class="form-check-label" for="male">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" name="emp_gender" value="Female" id="female" class="form-check-input">
+                        <label class="form-check-label" for="female">Female</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Salary (Monthly)</label>
+                <input type="number" name="emp_salary" class="form-control" placeholder="e.g. 75000">
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Hobbies</label>
+                <div class="option-group">
+                    <% ["Reading", "Music" , "Cricket" , "Uno" , "Other" ].map((hobby)=> { %>
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" name="emp_hobby" value="<%= hobby %>" id="<%= hobby %>" class="form-check-input">
+                            <label class="form-check-label" for="<%= hobby %>"><%= hobby %></label>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Select Role</label>
+                <select class="form-select" name="emp_role">
+                    <% ["Owner", "Manager" , "HR" , "Employee" ].map((role)=> {%>
+                        <option value="<%= role %>"><%= role %></option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-submit">Register Employee</button>
+        </form>
+
+        <a href="/employee/allEmployeePage" class="view-link">
+             - View All Employees -
+        </a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
