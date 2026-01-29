@@ -11,7 +11,8 @@
 
     <style>
         body {
-            background-color: #0a0e17; /* Deep Midnight Blue */
+            background-color: #0a0e17;
+            /* Deep Midnight Blue */
             font-family: 'Outfit', sans-serif;
             color: #ffffff;
             min-height: 100vh;
@@ -113,8 +114,16 @@
             font-size: 0.85rem;
         }
 
-        .label { color: #6e7681; display: block; margin-bottom: 2px; }
-        .val { color: #e6edf3; font-weight: 500; }
+        .label {
+            color: #6e7681;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .val {
+            color: #e6edf3;
+            font-weight: 500;
+        }
 
         /* Action Buttons */
         .card-actions {
@@ -133,12 +142,27 @@
             transition: 0.3s;
         }
 
-        .edit-link { background: #238636; color: white !important; }
-        .delete-link { background: rgba(248, 81, 73, 0.1); color: #f85149 !important; border: 1px solid #f85149; }
+        .edit-link {
+            background: #2386371e;
+            color: #2ea043 !important;
+            border: 1px solid #2ea043;
+        }
 
-        .edit-link:hover { background: #2ea043; }
-        .delete-link:hover { background: #f85149; color: white !important; }
+        .delete-link {
+            background: rgba(248, 81, 73, 0.1);
+            color: #f85149 !important;
+            border: 1px solid #f85149;
+        }
 
+        .edit-link:hover {
+            background: #2ea043;
+            color: white !important;
+        }
+
+        .delete-link:hover {
+            background: #f85149;
+            color: white !important;
+        }
     </style>
 </head>
 
@@ -160,14 +184,20 @@
                         <div class="avatar">
                             <%= emp['emp_name'].charAt(0).toUpperCase() %>
                         </div>
-                        
-                        <span class="emp-name"><%= emp['emp_name'] %></span>
-                        <span class="emp-role"><%= emp['emp_role'] %></span>
+
+                        <span class="emp-name">
+                            <%= emp['emp_name'] %>
+                        </span>
+                        <span class="emp-role">
+                            <%= emp['emp_role'] %>
+                        </span>
 
                         <div class="data-grid">
                             <div class="data-item">
                                 <span class="label">Email</span>
-                                <span class="val text-truncate d-block"><%= emp['emp_email'] %></span>
+                                <span class="val text-truncate d-block">
+                                    <%= emp['emp_email'] %>
+                                </span>
                             </div>
                             <div class="data-item">
                                 <span class="label">Salary</span>
@@ -175,25 +205,31 @@
                             </div>
                             <div class="data-item">
                                 <span class="label">Gender</span>
-                                <span class="val"><%= emp['emp_gender'] %></span>
+                                <span class="val">
+                                    <%= emp['emp_gender'] %>
+                                </span>
                             </div>
                             <div class="data-item">
                                 <span class="label">Hobby</span>
-                                <span class="val"><%= emp['emp_hobby'] %></span>
+                                <span class="val">
+                                    <%= emp['emp_hobby'] %>
+                                </span>
                             </div>
                         </div>
 
                         <div class="card-actions">
                             <a href="/employee/editEmp/<%= emp['id']%>" class="action-btn edit-link">Edit</a>
-                            <a href="/employee/deleteEmp/?empId=<%= emp['id']%>" class="action-btn delete-link">Delete</a>
+                            <a href="/employee/deleteEmp/?empId=<%= emp['id']%>"
+                                class="action-btn delete-link">Delete</a>
                         </div>
                     </div>
                 </div>
-            <% }) %>
+                <% }) %>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
