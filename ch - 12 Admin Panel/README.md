@@ -354,7 +354,5 @@ Crafted with ❤️ by Km. Rakholiya
 ---
 
 ## 📄 License
-
-This project is for learning, demo, and internal use.
-
-Not recommended for production without security upgrades.
+##  MIT License
+This project is licensed under the [MIT License](https://github.com/MrKrushik/License).
